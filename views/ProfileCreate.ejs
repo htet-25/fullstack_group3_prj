@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("layouts/header"); -%>
+  <body>
+    <%- include("layouts/navbar"); -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('/assets/img/g2_page.jpeg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <h1>Your Profile</h1>
+
+              <span class="meta">
+                <%if(message){ %> <%=message %> <%}else{%> Create your profile.
+                <%}%>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="ml-5">
+      <form
+        id="contactForm"
+        action="/Profile"
+        method="post"
+        data-sb-form-api-token="API_TOKEN"
+        enctype="multipart/form-data"
+      >
+        <div class="form-floating">
+          <%if(userId){%>
+          <input
+            class="form-control"
+            id="UserID"
+            name="UserID"
+            type="text"
+            value="<%=userId%>"
+            placeholder="Enter your UserID..."
+            data-sb-validations="required"
+            readonly
+          />
+          <%}%>
+
+          <label for="UserID">UserID</label>
+          <div class="invalid-feedback" data-sb-feedback="UserID:required">
+            UserID is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            class="form-control"
+            id="fName"
+            name="fName"
+            type="text"
+            placeholder="Enter your first name..."
+            data-sb-validations="required"
+            required
+          />
+          <label for="name">First Name</label>
+          <div class="invalid-feedback" data-sb-feedback="fName:required">
+            First name is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            class="form-control"
+            id="lName"
+            name="lName"
+            type="text"
+            placeholder="Enter your last name..."
+            data-sb-validations="required"
+            required
+          />
+          <label for="name">Last Name</label>
+          <div class="invalid-feedback" data-sb-feedback="lName:required">
+            Last name is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            class="form-control"
+            id="DOB"
+            name="DOB"
+            type="date"
+            placeholder="Enter your Date Of Birth(yyyy-mm-dd)..."
+            data-sb-validations="required"
+            required
+          />
+          <label for="DOB">Your DOB (yyyy-mm-dd)</label>
+          <div class="invalid-feedback" data-sb-feedback="DOB:required">
+            DOB is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            class="form-control"
+            id="address"
+            name="address"
+            type="text"
+            placeholder="Enter Address"
+            data-sb-validations="required"
+            required
+          />
+          <label for="address">Enter Address</label>
+          <div class="invalid-feedback" data-sb-feedback="Address:required">
+            Address is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            class="form-control"
+            id="details"
+            name="details"
+            type="text"
+            placeholder="Enter Car Details"
+            data-sb-validations="required"
+            required
+          />
+          <label for="address">Enter Car Details</label>
+          <div class="invalid-feedback" data-sb-feedback="Details:required">
+            Details is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            class="form-control"
+            id="license"
+            type="text"
+            name="license"
+            placeholder="Enter License Number"
+            data-sb-validations="required"
+            required
+          />
+          <label for="license">Enter License Number</label>
+          <div class="invalid-feedback" data-sb-feedback="license:required">
+            License number is required.
+          </div>
+        </div>
+        <div class="form-floating">
+          <input
+            type="file"
+            class="form-control"
+            id="image"
+            name="image"
+            data-sb-validations="required"
+            required
+          />
+          <label for="image">Car Image 1</label>
+          <div class="invalid-feedback" data-sb-feedback="image:required">
+            image is required.
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <input
+            type="file"
+            class="form-control"
+            id="image2"
+            name="image2"
+            data-sb-validations="required"
+            required
+          />
+          <label for="image2">Car Image 2</label>
+          <div class="invalid-feedback" data-sb-feedback="image2:required">
+            image 2 is required.
+          </div>
+        </div>
+        <br />
+
+        <!-- Submit Button-->
+        <button
+          class="btn btn-dark btn-lg text-uppercase"
+          id="submitButton"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </main>
+
+    <%- include("layouts/footer"); -%>
+  </body>
+</html>

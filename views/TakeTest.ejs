@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("layouts/header"); -%>
+  <body>
+    <%- include("layouts/navbar"); -%>
+
+    <header
+      class="masthead"
+      style="background-image: url('/assets/img/g_page.webp')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="post-heading">
+              <h1>Test Takers Profile</h1>
+
+              <span class="meta"> 
+                Evaluate the Candidate </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="w-50  mx-auto pl-5">
+     
+      
+      <br />
+      <h2>Test Takers Details</h2>
+     
+    <br/>
+    
+          <%if(userId){%>
+            <h1 class="display-6">UserId: <%=userId%></h1> 
+          <%}%>           
+        
+          <%if(fName){%>
+            <h1 class="display-6">First Name: <%=fName%> </h1>
+          <%}%>  
+          
+            <%if(lName){%>
+                <h1 class="display-6">Last Name: <%=lName%></h1>
+            <%}%>  
+            
+            <%if(DOB){%>
+                <h1 class="display-6">D.O.B.: <%=DOB%> </h1>
+            <%}%>  
+           
+            <%if(address){%>
+                <h1 class="display-6">Address: <%=address%> </h1>
+            <%}%>  
+            
+            <%if(carDetails){%>
+                <h1 class="display-6">Car Details: <%=carDetails%> </h1>
+            <%}%> 
+    
+            <%if(license){%>
+                <h1 class="display-6">License No.: <%=license%> </h1>
+            <%}%>  
+            
+            <%if(licenseType){%>
+                <h1 class="display-6">License Type: <%=licenseType %> </h1>
+            <%}%>  
+            <h1 class="display-6">Car Image 1</h1>
+          <%if(image1){%>
+          <img src="/<%=image1%>" class="img-fluid" alt="car image">
+          <%}%>
+
+          <h1 class="display-6">Car Image 2</h1>
+          <%if(image2){%>
+            <img src="/<%=image2%>" class="img-fluid" alt="car image">
+            <%}%>
+        <br/>
+         <form
+        id="contactForm"
+        action="/TestTaker"
+        method="post"
+        data-sb-form-api-token="API_TOKEN"
+        enctype="multipart/form-data"
+      >
+        
+          <input
+            class="d-none"
+            id="userId"
+            name="userId"
+            type="text"
+            
+            <%if(userId){%>
+              value = "<%=userId%>"
+            <%}%>           
+            readonly
+          />
+          <input
+          class="d-none"
+          id="testType"
+          name="testType"
+          type="text"
+          
+          <%if(testType){%>
+            value = "<%=testType %>"
+          <%}%>           
+          readonly
+        />
+            <br/>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="user"><span>Comments</span></label>
+                <textarea
+                  type="text"
+                  id="comment"
+                  name="comment"
+                  class="form-control"
+                  placeholder="comments"
+                ></textarea>
+              </div>
+        <div class="form-outline mb-4">
+            <h1 class="display-6">Decision</h1>
+            <select class="form-select" id="result" name="result">
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+            </select>
+        </div>
+        <!-- Submit Button-->
+        <button
+          class="btn btn-dark btn-lg text-uppercase"
+          id="resultButton"
+          type="submit"
+        >
+          post result
+        </button>
+      </form>
+    </main>
+
+    <%- include("layouts/footer"); -%>
+  </body>
+</html>
