@@ -1,79 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("layouts/header"); -%>
-  <body>
-    <%- include("layouts/navbar"); -%>
+<%- include("layouts/header"); -%>
 
-    <header
-      class="masthead"
-      style="background-image: url('/assets/img/g_page.webp')"
-    >
-      <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="post-heading">
-              <h1>Test Takers Profile</h1>
+<body>
+  <%- include("layouts/navbar"); -%>
 
-              <span class="meta"> 
-                Evaluate the Candidate </span>
-            </div>
+  <header class="masthead" style="background-image: url('/assets/img/pass.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="post-heading">
+            <h1 class="display-4"> Test Takers</h1>
+
+            <span class="meta">
+              Evaluate the Candidate </span>
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="w-50  mx-auto pl-5">
-     
-      
-      <br />
-      <h2>Test Takers Details</h2>
-     
-    <br/>
-    
-          <%if(userId){%>
-            <h1 class="display-6">UserId: <%=userId%></h1> 
-          <%}%>           
+  <main class="w-50  mx-auto pl-5">
+
+
+    <br />
+    <h2>Test Takers Details</h2>
+
+    <br />
+
+    <div class="form-floating">
+      <input class="form-control" id="userId" name="userId" type="text" placeholder="Enter your UserID..."
+        data-sb-validations="required" <%if(userId){%> value="<%=userId%>" <%}%>           
+        readonly
+      />
+      <label for="UserID">UserID</label>
+      <div class="invalid-feedback" data-sb-feedback="UserID:required">
+        UserID is required.
+      </div>
+    </div>
         
-          <%if(fName){%>
-            <h1 class="display-6">First Name: <%=fName%> </h1>
-          <%}%>  
-          
-            <%if(lName){%>
-                <h1 class="display-6">Last Name: <%=lName%></h1>
-            <%}%>  
-            
-            <%if(DOB){%>
-                <h1 class="display-6">D.O.B.: <%=DOB%> </h1>
-            <%}%>  
-           
-            <%if(address){%>
-                <h1 class="display-6">Address: <%=address%> </h1>
-            <%}%>  
-            
-            <%if(carDetails){%>
-                <h1 class="display-6">Car Details: <%=carDetails%> </h1>
-            <%}%> 
-    
-            <%if(license){%>
-                <h1 class="display-6">License No.: <%=license%> </h1>
-            <%}%>  
-            
-            <%if(licenseType){%>
-                <h1 class="display-6">License Type: <%=licenseType %> </h1>
-            <%}%>  
-            <h1 class="display-6">Car Image 1</h1>
-          <%if(image1){%>
-          <img src="/<%=image1%>" class="img-fluid" alt="car image">
-          <%}%>
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="fName"
+        name="fName"
+        type="text"
+        placeholder="Enter your first name..."
+        data-sb-validations="required"
+        <%if(fName){%> value="<%=fName%>" <%}%>  
+        readonly
+      />
+      <label for="name">First Name</label>
+      <div class="invalid-feedback" data-sb-feedback="fName:required">
+        First name is required.
+      </div>
+    </div>
 
-          <h1 class="display-6">Car Image 2</h1>
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="lName"
+        name="lName"
+        type="text"
+        placeholder="Enter your last name..."
+        data-sb-validations="required"
+        <%if(lName){%> value="<%=lName%>" <%}%>  
+        readonly
+      />
+      <label for="name">Last Name</label>
+      <div class="invalid-feedback" data-sb-feedback="lName:required">
+        Last name is required.
+      </div>
+    </div>
+
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="address"
+        name="address"
+        type="text"
+        placeholder="Enter Address"
+        data-sb-validations="required"
+        <%if(address){%> value="<%=address%>" <%}%>  
+        required
+      />
+      <label for="address">Your Address</label>
+      <div class="invalid-feedback" data-sb-feedback="Address:required">
+        Address is required.
+      </div>
+    </div>
+
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="DOB"
+        name="DOB"
+        type="text"
+        placeholder="Enter DOB"
+        data-sb-validations="required"
+        <%if(DOB){%> value="<%=DOB%>" <%}%>  
+        required
+      />
+      <label for="address">Your DOB</label>
+      <div class="invalid-feedback" data-sb-feedback="DOB:required">
+        DOB is required.
+      </div>
+    </div>
+
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="details"
+        name="details"
+        type="text"
+        placeholder="Enter Car Details"
+        data-sb-validations="required"
+        <%if(carDetails){%> value="<%=carDetails%>" <%}%> 
+        required 
+      />
+      <label for="details">Your Car Details</label>
+      <div class="invalid-feedback" data-sb-feedback="Details:required">
+        Details is required.
+      </div>
+    </div>
+          
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="license"
+        type="text"
+        name="license"
+        placeholder="Enter License Number"
+        data-sb-validations="required"
+        <%if(license){%> value="<%=license%>" <%}%>  
+        readonly
+      />
+      <label for="license">Your License Number</label>
+      <div class="invalid-feedback" data-sb-feedback="license:required">
+        License number is required.
+      </div>
+    </div>
+    <div class="form-floating">
+      <input
+        class="form-control"
+        id="licenseType"
+        type="text"
+        name="licenseType"
+        placeholder="Enter License licenseType"
+        data-sb-validations="required"
+        <%if(licenseType){%> value="<%=licenseType%>" <%}%>  
+        readonly
+      />
+      <label for="license">Your licenseType</label>
+      <div class="invalid-feedback" data-sb-feedback="licenseType:required">
+        license Type is required.
+      </div>
+    </div>
+            <br> 
+            <h1 class="form-control">Car Image 1</h1>
+          <%if(image1){%> <img src="/<%=image1%>" class="img-fluid" alt="car image">
+      <%}%>
+<br>
+          <h1 class="form-control">Car Image 2</h1>
           <%if(image2){%>
-            <img src="/<%=image2%>" class="img-fluid" alt="car image">
-            <%}%>
+      <img src="/<%=image2%>" class="img-fluid" alt="car image">
+      <%}%>
         <br/>
          <form
         id="contactForm"
-        action="/TestTaker"
+        action="/TestExaminer"
         method="post"
         data-sb-form-api-token="API_TOKEN"
         enctype="multipart/form-data"
@@ -86,8 +181,8 @@
             type="text"
             
             <%if(userId){%>
-              value = "<%=userId%>"
-            <%}%>           
+      value = "<%=userId%>"
+      <%}%>           
             readonly
           />
           <input
@@ -97,8 +192,8 @@
           type="text"
           
           <%if(testType){%>
-            value = "<%=testType %>"
-          <%}%>           
+      value = "<%=testType %>"
+      <%}%>           
           readonly
         />
             <br/>
@@ -131,5 +226,6 @@
     </main>
 
     <%- include("layouts/footer"); -%>
-  </body>
+</body>
+
 </html>

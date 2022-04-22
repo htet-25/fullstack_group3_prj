@@ -8,9 +8,9 @@ const fileUpload = require("express-fileupload");
 const expressSession = require("express-session");
 
 const getLanding = require("./controllers/getLanding");
-const getGPage = require( "./controllers/getGPage");
-const postGPage = require( "./controllers/postGPage");
-const getG2Page = require( "./controllers/getG2Page");
+const getGPage = require("./controllers/getGPage");
+const postGPage = require("./controllers/postGPage");
+const getG2Page = require("./controllers/getG2Page");
 //const postG2Page = require( "./controllers/postG2Page");
 const getAppointment = require("./controllers/getAppointment");
 const postAppointment = require("./controllers/postAppointment");
@@ -19,15 +19,19 @@ const bookAppointmentTime = require("./controllers/bookAppointmentTime");
 const getExaminer = require("./controllers/getExaminer");
 const getProfile = require("./controllers/getProfile");
 const postProfile = require("./controllers/postProfile");
-const updateProfile = require("./controllers/updateProfile");
-const getTestTaker = require("./controllers/getTestTaker");
-const postTestTaker = require("./controllers/postTestTaker");
+const updateProfile = require("./controllers/updateProfile")
+const getTestExaminer = require("./controllers/getTestExaminer");
+const postTestExaminer = require("./controllers/postTestExaminer");
+const getPassList = require("./controllers/getPassList");
+const getFailList = require("./controllers/getFailList");
+const resetUser = require("./controllers/resetUser");
 
-const getSignup = require( "./controllers/getSignup");
-const postSignup = require( "./controllers/postSignup");
-const getLogin = require( "./controllers/getLogin");
-const postLogin = require( "./controllers/postLogin");
-const getLogout = require( "./controllers/getLogout");
+
+const getSignup = require("./controllers/getSignup");
+const postSignup = require("./controllers/postSignup");
+const getLogin = require("./controllers/getLogin");
+const postLogin = require("./controllers/postLogin");
+const getLogout = require("./controllers/getLogout");
 const getSuccess = require("./controllers/getSuccess");
 
 const authMiddleware = require("./middleware/authMiddleware");
@@ -35,15 +39,14 @@ const redirectIfAuthenticated = require("./middleware/redirectIfAuthenticated");
 const checkDriver = require("./middleware/checkDriver");
 const checkAdmin = require("./middleware/checkAdmin");
 const checkExaminer = require("./middleware/checkExaminer");
-const getPassList = require("./controllers/getPassList");
-const resetUser = require("./controllers/resetUser");
-
 
 const app = new express();
 
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static("public"));
 app.use(fileUpload());
 app.use(
@@ -63,8 +66,10 @@ app.use("*", (req, _res, next) => {
 });
 
 mongoose.connect(
-  "mongodb+srv://admin-gamik:admin123@cluster0.wx3yh.mongodb.net/kiosk?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true }
+  "mongodb+srv://rupesh401:l4sKmRybESR9zjgJ@cluster0.f7hsz.mongodb.net/kioske?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
 );
 
 app.get("/", getLanding);
@@ -82,19 +87,21 @@ app.get("/G2_Page", authMiddleware, checkDriver, getG2Page);
 app.post("/G2_Page/BookAppointmentDate", authMiddleware, checkDriver, bookAppointmentDate);
 app.post("/G2_Page/BookAppointmentTime", authMiddleware, checkDriver, bookAppointmentTime);
 
-app.get("/Profile",authMiddleware , checkDriver, getProfile);
+app.get("/Profile", authMiddleware, checkDriver, getProfile);
 app.post("/Profile", authMiddleware, checkDriver, postProfile);
-app.post("/Profile/update", authMiddleware, checkDriver, updateProfile );
+app.post("/Profile/update", authMiddleware, checkDriver, updateProfile);
 
 
-app.get("/Appointment" , authMiddleware, checkAdmin, getAppointment);
-app.post("/Appointment" , authMiddleware, checkAdmin, postAppointment); 
-app.get("/PassList",authMiddleware, checkAdmin, getPassList);
-app.get("/PassList/:userId/:testType",authMiddleware,checkAdmin, resetUser);
+app.get("/Appointment", authMiddleware, checkAdmin, getAppointment);
+app.post("/Appointment", authMiddleware, checkAdmin, postAppointment);
 
-app.get("/Examiner" , authMiddleware, checkExaminer, getExaminer);
-app.get("/TestTaker/:userId/:testType",checkExaminer,getTestTaker);
-app.post("/TestTaker",checkExaminer,postTestTaker);
+app.get("/Examiner", authMiddleware, checkExaminer, getExaminer);
+app.get("/TestExaminer/:userId/:testType", checkExaminer, getTestExaminer);
+app.post("/TestExaminer", checkExaminer, postTestExaminer);
+app.get("/PassList", authMiddleware, checkAdmin, getPassList);
+app.get("/FailList", authMiddleware, checkAdmin, getFailList);
+app.get("/PassList/:userId/:testType", authMiddleware, checkAdmin, resetUser);
+app.get("/FailList/:userId/:testType", authMiddleware, checkAdmin, resetUser);
 
 app.get("/Login", redirectIfAuthenticated, getLogin);
 
@@ -108,7 +115,7 @@ app.get("/success", getSuccess);
 
 app.get("/logout", getLogout);
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
   res.render("notFound");
 });
 

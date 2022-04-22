@@ -1,70 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("layouts/header"); -%>
+<%- include("layouts/header"); -%>
 
-  <body>
-    <%- include("layouts/navbar"); -%>
-    <header
-      class="masthead"
-      style="background-image: url('assets/img/login_page.jpeg')"
-    >
-      <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-lg-6">
-            <div class="card-body p-md-5 mx-md-4">
-              <div class="text-center">
-                <h4 class="mt-1 mb-5 pb-1">Set Appointments</h4>
-              </div>
+<body>
+  <%- include("layouts/navbar"); -%>
+  <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-lg-6">
+          <div class="card-body p-md-5 mx-md-4">
+            <div class="text-center">
+              <h4 class="mt-1 mb-5 pb-1">Set Appointments</h4>
+            </div>
 
-              <form
-                id="appointmentsForm"
-                action="/Appointment"
-                method="post"
-                data-sb-form-api-token="API_TOKEN"
-              >
-            
+            <form id="appointmentsForm" action="/Appointment" method="post" data-sb-form-api-token="API_TOKEN">
+
               <div class="form-outline mb-4">
                 <label class="form-label" for="ADate">Appointment Date</label>
-                <input
-                  type="date"
-                  id="ADate"
-                  name="ADate"
-                  class="form-control"
-                  placeholder="yyyy-mm-dd"
-                />
+                <input type="date" id="ADate" name="ADate" class="form-control" placeholder="yyyy-mm-dd" />
               </div>
 
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="Time Slot">Time Slot</label>
-                  <select class="form-select" id="timeSlot" name="timeSlot">
-                    <option value="09:00">09:00</option>
-                    <option value="09:30">09:30</option>
-                    <option value="10:00">10:00</option>
-                    <option value="10:30">10:30</option>
-                    <option value="11:00">11:00</option>
-                    <option value="11:30">11:30</option>
-                    <option value="12:00">12:00</option>
-                    <option value="12:30">12:30</option>
-                    <option value="01:00">01:00</option>
-                    <option value="01:30">01:30</option>
-                  </select>
-                </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="Time Slot">Time Slot</label>
+                <select class="form-select" id="timeSlot" name="timeSlot">
+                  <option value="09:00">09:00</option>
+                  <option value="09:30">09:30</option>
+                  <option value="10:00">10:00</option>
+                  <option value="10:30">10:30</option>
+                  <option value="11:00">11:00</option>
+                  <option value="11:30">11:30</option>
+                  <option value="12:00">12:00</option>
+                  <option value="12:30">12:30</option>
+                  <option value="01:00">01:00</option>
+                  <option value="01:30">01:30</option>
+                </select>
+              </div>
 
-                <div class="text-center pt-1 mb-5 pb-1">
-                  <button
-                    class="btn btn-dark btn-lg text-uppercase"
-                    id="submitButton"
-                    type="submit"
-                  >
-                    Set Slot
-                  </button>
-                </div>
-              </form>
-            </div>
+              <div class="text-center pt-1 mb-5 pb-1">
+                <button class="btn btn-dark btn-lg text-uppercase" id="submitButton" type="submit">
+                  Set Slot
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </header>
-    <%- include("layouts/footer"); -%>
-  </body>
+    </div>
+  </header>
+  <%- include("layouts/footer"); -%>
+</body>
+
 </html>

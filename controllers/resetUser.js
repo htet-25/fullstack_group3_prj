@@ -5,10 +5,10 @@ module.exports = (req,res) => {
     User.updateOne({userId: req.params.userId},{$unset : {myAppointment: "" , comment : "" , testType : "" , result: ""}},(err,docs)=>{
         if(err || docs.matchedCount <= 0){
             alert("error occured");
-            res.redirect("/PassList");
+            res.redirect("/");
         }else{
             alert("user reset done");
-            res.redirect("/PassList");
+            res.redirect("/");
         }
     });
 };

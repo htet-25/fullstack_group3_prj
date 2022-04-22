@@ -1,4 +1,5 @@
 const Login = require("../models/Login");
+const alert = require("alert");
 
 module.exports = (req, res) => {
   Login.create(
@@ -9,10 +10,14 @@ module.exports = (req, res) => {
     },
     (error, _login) => {
       if (error) {
+        alert("error occured");
         return res.redirect("/Signup");
+      }else{
+        alert("successfully registered");
+        res.redirect("/Login");
       }
 
-      res.redirect("/Login");
+      
     }
   );
 };

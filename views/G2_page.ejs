@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("layouts/header"); -%>
-  <body>
-    <%- include("layouts/navbar"); -%>
+<%- include("layouts/header"); -%>
 
-    <header
-      class="masthead"
-      style="background-image: url('/assets/img/g2_page.jpeg')"
-    >
-      <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="page-heading">
-              <h1>G2_page</h1>
+<body>
+  <%- include("layouts/navbar"); -%>
 
-              <span class="meta">
-                <%if(message){ %> <%=message %> <%}else{%> Enter your details to
-                register. <%}%>
+  <header class="masthead" style="background-image: url('/assets/img/contact-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="page-heading">
+            <h1>G2_page</h1>
+
+            <span class="meta">
+              <%if(message){ %> <%=message %> <%}else{%> Enter your details to
+              register. <%}%>
               </span>
             </div>
           </div>
@@ -26,103 +24,61 @@
 
     <main class="ml-5">
       <% if(message == "You have a G2 Licence"){ %>
-        <h1 class="display-6 text-center"> You have a G2 Licence</h1>
-      <% }else if( hasAppointment && !gotDate) { %>
-        <h1 class="display-6 text-center">Your G2 Road Test Appointment is On: </h1>
-        <h1 class="display-5 text-center"><%=hasAppointment.date %></h1>
-        <h1 class="display-5 text-center"><%=hasAppointment.time %></h1>
-      <% }else if(!hasAppointment && !gotDate) { %>
-      <form
-        id="bookAppointmentDate"
-        action="/G2_Page/BookAppointmentDate"
-        method="post"
-        data-sb-form-api-token="API_TOKEN"
-      >
-      <input
-      type="text"
-      id="testType"
-      name="testType"
-      value="G2"
-      class="d-none"
-      readonly 
-    />
-        <div class="form-outline mb-4">
-          <label class="form-label" for="user"><span>Appointment Date</span></label>
-          <input
-            type="date"
-            id="ADate"
-            name="ADate"
-            class="form-control"
-            placeholder="yyyy-mm-dd"
-          />
-        </div>
+              <h1 class="display-6 text-center"> You have a G2 Licence</h1>
+              <% }else if( hasAppointment && !gotDate) { %>
+              <h1 class="display-6 text-center">Your G2 Road Test Appointment is On: </h1>
+              <h1 class="display-5 text-center"><%=hasAppointment.date %></h1>
+              <h1 class="display-5 text-center"><%=hasAppointment.time %></h1>
+              <% }else if(!hasAppointment && !gotDate) { %>
+              <form id="bookAppointmentDate" action="/G2_Page/BookAppointmentDate" method="post"
+                data-sb-form-api-token="API_TOKEN">
+                <input type="text" id="testType" name="testType" value="G2" class="d-none" readonly />
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="user"><span>Appointment Date</span></label>
+                  <input type="date" id="ADate" name="ADate" class="form-control" placeholder="yyyy-mm-dd" />
+                </div>
 
-        <div class="text-center pt-1 mb-5 pb-1">
-          <button
-            class="btn btn-dark btn-lg text-uppercase"
-            id="appointDateButton"
-            type="submit"
-          >
-            Select Date
-          </button>
-          
-        </div>
-      </form>
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <button class="btn btn-dark btn-lg text-uppercase" id="appointDateButton" type="submit">
+                    Select Date
+                  </button>
 
-      <% }else if(!hasAppointment && gotDate){ %>
+                </div>
+              </form>
 
-      <form
-        id="bookAppointmentTime"
-        action="/G2_Page/BookAppointmentTime"
-        method="post"
-        data-sb-form-api-token="API_TOKEN"
-      >
-      <input
-      type="text"
-      id="testType"
-      name="testType"
-      value="G2"
-      class="d-none"
-      readonly 
-    />
-        <div class="form-outline mb-4">
-          <label class="form-label" for="AppDate"><span>Appointment Date</span></label>
-          <input
-            type="date"
-            id="AppDate"
-            name="AppDate"
-            class="form-control"
-            placeholder="yyyy-mm-dd"
-            value="<%=gotDate %>"
-            readonly
-          /> 
-        </div>
+              <% }else if(!hasAppointment && gotDate){ %>
 
-        <div class="form-outline mb-4">
-          <label class="form-label" for="timeSlot"><span>Select Time Slot</span></label>
-          <select class="form-select" id="timeSlot" name="timeSlot">
-            <% slots.forEach(slot =>{ %>
-            <option value="<%=slot %>"><%=slot %></option>
-            <% }); %>
-          </select>
-        </div>
+              <form id="bookAppointmentTime" action="/G2_Page/BookAppointmentTime" method="post"
+                data-sb-form-api-token="API_TOKEN">
+                <input type="text" id="testType" name="testType" value="G2" class="d-none" readonly />
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="AppDate"><span>Appointment Date</span></label>
+                  <input type="date" id="AppDate" name="AppDate" class="form-control" placeholder="yyyy-mm-dd"
+                    value="<%=gotDate %>" readonly />
+                </div>
 
-        <div class="text-center pt-1 mb-5 pb-1">
-          <button
-            class="btn btn-dark btn-lg text-uppercase"
-            id="appointTimeButton"
-            type="submit"
-          >
-            Submit
-          </button>
-          <a href="/G2_Page" class="btn btn-light btn-block fa-lg ">
-            Restart
-          </a>
-        </div>
-      </form>
-      <% } %>
-    </main>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="timeSlot"><span>Select Time Slot</span></label>
+                  <select class="form-select" id="timeSlot" name="timeSlot">
+                    <% slots.forEach(slot =>{ %>
+                    <option value="<%=slot %>"><%=slot %></option>
+                    <% }); %>
+                  </select>
+                </div>
 
-    <%- include("layouts/footer"); -%>
-  </body>
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <button class="btn btn-dark btn-lg text-uppercase" id="appointTimeButton" type="submit">
+                    Submit
+                  </button>
+                  <a href="/G2_Page" class="btn btn-light btn-block fa-lg ">
+                    Restart
+                  </a>
+                </div>
+              </form>
+              <% } %>
+              </main>
+
+              <%- include("layouts/footer"); -%>
+</body>
+
 </html>

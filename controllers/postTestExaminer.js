@@ -11,7 +11,7 @@ module.exports = (req,res) => {
             }
         });
     }else if(req.body.result == "Fail"){
-        User.updateOne({userId : req.body.userId},{result : "FALL" , comment: req.body.comment }, (_err , docs) => {
+        User.updateOne({userId : req.body.userId},{result : "FAIL" , comment: req.body.comment }, (_err , docs) => {
             if(docs.matchedCount == "1"){
                 alert("Result Updated");
                 res.redirect("/Examiner");

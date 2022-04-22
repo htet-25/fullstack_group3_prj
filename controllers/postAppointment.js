@@ -1,4 +1,5 @@
 const Appointment = require("../models/Appointment");
+const alert = require("alert");
 
 module.exports = (req, res) => {
     Appointment.create(
@@ -11,7 +12,11 @@ module.exports = (req, res) => {
         if (error) {
           return res.redirect("/Dashboard");
         }
-        res.redirect("/Appointment");
+        else{
+          alert("Appointment Created.");
+          res.redirect("/Appointment");
+        }
+        
       }
       );
 };
